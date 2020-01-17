@@ -511,3 +511,64 @@ To do this,
 we'll write a small function that takes `id` 
 and sends the current datetime to `${id}_reset`.
 Then, call this function using `setTimeout()`.
+
+`r github_sha_link("bc452ebe4671621239d3f10054d01c90d1280bd2")`
+
+## Use our frappeChart widget to show speed over time
+
+We're going to drop-in our `frappeChart` package to add a dynamic plot
+showing typing speed over time.
+
+If you didn't complete the `frappeChart` project earlier in the workshop,
+you can run the code below to install the package
+in the state I hope it's in by the time we finish that section.
+
+```r
+devtools::install_github("gadenbuie/js4shiny-frappeCharts@pkg")
+```
+
+Our first pass is going to add a chart,
+but it's not going to look super great.
+
+To get setup, 
+we're going to cache the `time` and `wpm` sent from the browser
+in a `reactiveValues` object that we can coerce into a `data.frame`.
+
+```r
+# server
+wpm <- reactiveValues(time = c(), wpm = c())
+
+observeEvent(input$typing_reset, {
+  wpm$time <- c()
+  wpm$wpm <- c()
+})
+
+observeEvent(input$typing, {
+  req(input$typing)
+  wpm$time <- c(wpm$time, input$typing$time)
+  wpm$wpm <- c(wpm$wpm, input$typing$wpm)
+})
+```
+
+We add the `frappeCharts` output to our UI
+
+```r
+# ui
+frappeCharts::frappeChartOutput("chart_typing_speed")
+```
+
+and use the following settings to render the `wpm` in "real time"
+
+```r
+# server
+output$chart_typing_speed <- frappeCharts::renderFrappeChart({
+  frappeCharts::frappeChart(
+    data.frame(time = wpm$time, wpm = wpm$wpm),
+    type = "line",
+    title = "Your Typing Speed",
+    is_navigable = FALSE,
+    axisOptions = list(xIsSeries = TRUE),
+    lineOptions = list(regionFill = TRUE)
+  )
+})
+```
