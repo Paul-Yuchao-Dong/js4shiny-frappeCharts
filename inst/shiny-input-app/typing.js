@@ -3,6 +3,8 @@
 
 const typingSpeed = new Shiny.InputBinding();
 
+const sendResetEvent = (id) => Shiny.setInputValue(`${id}_reset`, Date.now())
+
 $.extend(typingSpeed, {
   _timing: null,
   find: function(scope) {
@@ -22,7 +24,7 @@ $.extend(typingSpeed, {
 
     if (nchar === 0) {
       this._timing = null
-      Shiny.Shiny.setInputValue(el.id + '_reset', Date.now())
+      setTimeout(() => sendResetEvent(el.id), 0)
       return null
     }
     if (!this._timing && nchar > 0) {
