@@ -13,7 +13,7 @@ output: github_document
 knitr::opts_chunk$set(eval = FALSE)
 
 github_sha_link <- function(sha) {
-  glue::glue("[{sha}](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/{sha})")
+  glue::glue("[changelog: {substr(sha, 1, 6)}](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/{sha})")
 }
 
 get_last_sha <- function() {
@@ -612,6 +612,8 @@ observeEvent(wpm$time, {
 ```
 
 ## Final Step: Make it fun
+
+`r github_sha_link("2eb08e286b79cb312a948a48db53813cb1eac0e2")`
 
 Download the [Shiny module I created][typing-stats-module-gist] for this project
 into the directory with your `app.R` file.
