@@ -8,7 +8,7 @@ time as they type.
 
 ## Setup a folder for our app inside the frappeCharts package
 
-[changelog: 113340](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/113340074c3af9c2cdf46cd7787829d4ec56bfcf)
+  - [changelog: 113340](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/113340074c3af9c2cdf46cd7787829d4ec56bfcf)
 
 Create the directory `inst/shiny-input-app` and add `app.R` and
 `typing.js`.
@@ -21,8 +21,9 @@ file.create("inst/shiny-input-app/typing.js")
 
 ## Create a basic Shiny app with a typing area
 
-[changelog:
-ff3a96](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/ff3a962f7e6d16a75ebdb620aac0fdfc9949086e)
+  - [changelog:
+    ff3a96](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/ff3a962f7e6d16a75ebdb620aac0fdfc9949086e)
+  - Checkpoint: `js4shiny::repl_example("shiny-typing-01")`
 
 We’ll start with typical Shiny inputs.
 
@@ -45,8 +46,8 @@ Run this app and type in the box.
 
 ## Create our own typingSpeedInput()
 
-[changelog:
-b71080](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/b7108029b58635652ce87f3e1ea9a2c5a6232020)
+  - [changelog:
+    b71080](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/b7108029b58635652ce87f3e1ea9a2c5a6232020)
 
 Use Shiny’s `textAreaInput()` to get the template for our own
 `typingSpeedInput()`
@@ -99,7 +100,8 @@ ui <- fluidPage(
 
 ## Start creating an input binding for `typingSpeedInput()`
 
-[changelog: 02adb8](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/02adb896c50a97ebe7f9a7fef2a6f00488f9418d)
+  - [changelog: 02adb8](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/02adb896c50a97ebe7f9a7fef2a6f00488f9418d)
+  - Checkpoint: `js4shiny::repl_example("shiny-typing-02")`
 
 Now we can open `typing.js` and create a Shiny input binding.
 
@@ -180,7 +182,7 @@ Shiny.inputBindings.register(bindingName, 'pkgName.bindingName');
 
 </details>
 
-[changelog: 6fffc2](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/6fffc2337ad475af2ab09ee571014afdbb680fb6)
+  - [changelog: 6fffc2](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/6fffc2337ad475af2ab09ee571014afdbb680fb6)
 
 If you use the snippet, it automatically walks you through the first
 pass of parts that need to be changed. If you copied the template, you
@@ -217,7 +219,7 @@ need to find and replace all:
 
 ## Add a dependency to the typing input
 
-[changelog: 0be8ef](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/0be8efb83bef664f707b8716eab1d5478de933c7)
+  - [changelog: 0be8ef](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/0be8efb83bef664f707b8716eab1d5478de933c7)
 
 To have `typing.js` included with our input, we use
 `htmltools::htmlDependency()` inside our input function. This guarantees
@@ -424,7 +426,7 @@ How does the app report the initial typing speed rates?
 Add another `if` statement to continue to return `null` until there are
 at least 3 words in the text box.
 
-[changelog: 9f9153](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/9f915337a2ab55c7e94eaa5cfa454c21bc8d72ba)
+  - [changelog: 9f9153](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/9f915337a2ab55c7e94eaa5cfa454c21bc8d72ba)
 
 ### Your Turn: Find a rate policy balance
 
@@ -439,7 +441,7 @@ Try various settings of
 
 Find a good delay rate.
 
-[changelog: 8519d7](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/8519d729bca13c730528a287c3601c4df2828e4f)
+  - [changelog: 8519d7](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/8519d729bca13c730528a287c3601c4df2828e4f)
 
 ### Almost done: Implement `receiveMessage()`
 
@@ -453,7 +455,7 @@ clears the text input area.
 Add a reset button to your app that uses `shiny$sendInputMessage()` to
 send `typing` a `TRUE` whenever the button is clicked.
 
-[changelog: 269e4e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/269e4ebdc48a66ecf7466192076c4fa259582cc6)
+  - [changelog: 269e4e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/269e4ebdc48a66ecf7466192076c4fa259582cc6)
 
 Once you get that working, refactor it into a `resetTypingSpeed()`
 function.
@@ -461,7 +463,7 @@ function.
 This function should take an `inputId` and a `session` object. Use
 `shiny::getDefaultReactiveDomain()` for the default `session` value.
 
-[changelog: 644a8b](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/644a8b6c2e8f3719bda89cbd7801a90401c9eadb)
+  - [changelog: 644a8b](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/644a8b6c2e8f3719bda89cbd7801a90401c9eadb)
 
 ### Final Step: Extra inputs on the side
 
@@ -477,8 +479,8 @@ Try adding a `Shiny.setInputValue()` that sends the current time to the
 input ID `{inputId}_reset` when the `this._timing` property is reset.
 Also, update the `debug` output to monitor `input$typing_reset` as well.
 
-[changelog:
-def78c](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/def78c8a2f9c329f9c0b6ac2d59a3300af990183)
+  - [changelog:
+    def78c](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/def78c8a2f9c329f9c0b6ac2d59a3300af990183)
 
 This doesn’t work because `getValue()` is already inside the “reactive”
 loop. (I’ll admit, this is very hand-wavy.)
@@ -488,14 +490,19 @@ Instead, we need to call a function outside of the context of
 and sends the current datetime to `${id}_reset`. Then, call this
 function using `setTimeout()`.
 
-[changelog:
-bc452e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/bc452ebe4671621239d3f10054d01c90d1280bd2)
+  - [changelog:
+    bc452e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/bc452ebe4671621239d3f10054d01c90d1280bd2)
 
 ## Use our frappeChart widget to show speed over time
 
+  - Checkpoint (completed JS):
+    `js4shiny::repl_example("shiny-typing-03")`
+  - Checkpoint (with frappeChart):
+    `js4shiny::repl_example("shiny-typing-04")`
+
 ### First pass
 
-[changelog: 8943c1](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/8943c16e139d72d614d806c271868e78224da59d)
+  - [changelog: 8943c1](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/8943c16e139d72d614d806c271868e78224da59d)
 
 We’re going to drop-in our `frappeChart` package to add a dynamic plot
 showing typing speed over time.
@@ -556,8 +563,8 @@ output$chart_typing_speed <- frappeCharts::renderFrappeChart({
 
 ### Don’t redraw: Use the update method we made for frappeCharts
 
-[changelog:
-f7a934](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/f7a9343a26a1a0a021c32c15c870e76813b43e83)
+  - [changelog:
+    f7a934](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/f7a9343a26a1a0a021c32c15c870e76813b43e83)
 
 Replace the initial `frappeChart()` with a simple placeholder.
 
@@ -588,7 +595,8 @@ observeEvent(wpm$time, {
 
 ## Final Step: Make it fun
 
-[changelog: 2eb08e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/2eb08e286b79cb312a948a48db53813cb1eac0e2)
+  - [changelog: 2eb08e](https://github.com/gadenbuie/js4shiny-frappeCharts/commit/2eb08e286b79cb312a948a48db53813cb1eac0e2)
+  - Checkpoint (final app): `js4shiny::repl_example("shiny-typing-05")`
 
 Download the [Shiny module I
 created](https://gist.github.com/gadenbuie/08546fd96b96fbf810f84ccdc7b69bcc)
